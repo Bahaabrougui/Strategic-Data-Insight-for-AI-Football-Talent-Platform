@@ -1,4 +1,4 @@
-# Strategic Analysis & Recommendations
+# Strategic Analysis & Recommendations 
 
 ## Business Goal
 Increase the rate at which promising street footballers are identified and signed by professional clubs, using existing data.
@@ -19,7 +19,7 @@ Increase the rate at which promising street footballers are identified and signe
 
 ### 1. Introduce a Composite Talent Score
 - Create a simple average of video, behavior, and coach feedback scores.
-- **Why**: Individually weakly predictive, but combined scores yield stronger predictive power (validated via modeling).
+- **Why**: Individually weak predictors, but combined they yield stronger predictive power (validated via modeling).
 - **Impact**: Summarizes player quality into a single metric and helps the model identify well-rounded players by consolidating performance indicators, improving classification of subtle talent profiles.
 
 ---
@@ -40,7 +40,10 @@ Increase the rate at which promising street footballers are identified and signe
 
 ---
 
-## Expected Business Value (using Xgb since it's outperforming LR)
+## Expected Business Value
+
+Metrics are based on hold-out test set. 
+Improvements driven by SMOTE, feature engineering, and using Xgb since it's outperforming LR:
 
 | Metric | Baseline | After Improvements |
 |--------|--------|--------------------|
@@ -65,4 +68,12 @@ Increase the rate at which promising street footballers are identified and signe
 - Proper tests (e.g. unit tests) are missing due to time constraints. Basic assertions
 are used in the different notebooks.
 
-
+## Key challenges:
+- Severe class imbalance: ~75% of players are not of interest to clubs, 
+making it hard to train effective classifiers.
+- Weak individual predictors: Raw scores (video, behavior, coach feedback) 
+show low correlation with club interest.
+- Noisy demographic signals: Age and gender distributions are skewed, 
+introducing potential bias.
+- Most features do not separate classes clearly, 
+making simpler models like Logistic Regression underperform.
